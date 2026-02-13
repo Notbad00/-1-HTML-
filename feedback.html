@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Обратная связь — Я студент ВШЭ</title>
+  <meta name="description" content="Форма обратной связи: поля ввода, выбор, чекбоксы." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <a class="skip-link" href="#content">Перейти к основному содержимому</a>
+
+  <header class="site-header">
+    <div class="container">
+      <h1>Обратная связь</h1>
+      <p class="subtitle">Оставь сообщение — я отвечу на почту.</p>
+    </div>
+  </header>
+
+  <nav class="site-nav" aria-label="Основная навигация">
+    <div class="container">
+      <ul>
+        <li><a href="index.html">Главная</a></li>
+        <li><a aria-current="page" href="feedback.html">Обратная связь</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main id="content" class="container">
+    <section aria-labelledby="form-title">
+      <h2 id="form-title">Форма</h2>
+
+      <article class="card">
+        <form action="#" method="post" autocomplete="on">
+          <fieldset>
+            <legend>Контактные данные</legend>
+
+            <label for="name">Имя</label>
+            <input id="name" name="name" type="text" placeholder="Иван" required />
+
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" placeholder="name@example.com" required />
+
+            <label for="tel">Телефон (необязательно)</label>
+            <input id="tel" name="tel" type="tel" placeholder="+7..." />
+          </fieldset>
+
+          <fieldset>
+            <legend>Тема и сообщение</legend>
+
+            <label for="topic">Тема</label>
+            <select id="topic" name="topic" required>
+              <option value="" selected disabled>Выберите тему</option>
+              <option value="study">Учёба в ВШЭ</option>
+              <option value="projects">Проекты/портфолио</option>
+              <option value="other">Другое</option>
+            </select>
+
+            <label for="message">Сообщение</label>
+            <textarea id="message" name="message" rows="6" minlength="10" required
+              placeholder="Напишите вопрос или комментарий..."></textarea>
+
+            <label for="file">Прикрепить файл (необязательно)</label>
+            <input id="file" name="file" type="file" />
+          </fieldset>
+
+          <fieldset>
+            <legend>Предпочтения</legend>
+
+            <p class="muted">Как с вами связаться?</p>
+            <label><input type="radio" name="contact" value="email" checked /> По email</label>
+            <label><input type="radio" name="contact" value="phone" /> По телефону</label>
+
+            <label class="mt">
+              <input type="checkbox" name="agree" required />
+              Я согласен(на) на обработку данных для ответа на обращение
+            </label>
+          </fieldset>
+
+          <div class="actions">
+            <button type="submit">Отправить</button>
+            <button type="reset" class="secondary">Очистить</button>
+          </div>
+
+          <p class="muted">
+            Примечание: это учебная форма, отправка не настроена (action="#").
+          </p>
+        </form>
+      </article>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p class="muted">Вернуться на <a href="index.html">главную</a>.</p>
+    </div>
+  </footer>
+</body>
+</html>
