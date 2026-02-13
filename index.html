@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Я — студент ВШЭ</title>
+  <meta name="description" content="Мини-сайт: Я — студент ВШЭ. Главная страница и форма обратной связи." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <a class="skip-link" href="#content">Перейти к основному содержимому</a>
+
+  <header class="site-header">
+    <div class="container">
+      <h1>Я — студент ВШЭ</h1>
+      <p class="subtitle">
+        Небольшой статический сайт из двух страниц: о себе и обратная связь.
+      </p>
+    </div>
+  </header>
+
+  <nav class="site-nav" aria-label="Основная навигация">
+    <div class="container">
+      <ul>
+        <li><a aria-current="page" href="index.html">Главная</a></li>
+        <li><a href="feedback.html">Обратная связь</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main id="content" class="container">
+    <section aria-labelledby="about">
+      <h2 id="about">Обо мне</h2>
+
+      <article class="card">
+        <header>
+          <h3>Кто я</h3>
+        </header>
+
+        <p>
+          Меня зовут <strong>Имя Фамилия</strong>, я учусь в ВШЭ и интересуюсь
+          аналитикой, данными и финтехом.
+        </p>
+
+        <p>
+          Это пример страницы, где используются <em>семантические теги</em>
+          (<code>header</code>, <code>nav</code>, <code>main</code>,
+          <code>section</code>, <code>article</code>, <code>footer</code>) и
+          строчные/блочные элементы.
+        </p>
+
+        <footer class="muted">
+          <p>Обновлено: <time datetime="2026-02-14">14.02.2026</time></p>
+        </footer>
+      </article>
+    </section>
+
+    <section aria-labelledby="hse">
+      <h2 id="hse">Почему ВШЭ</h2>
+
+      <figure class="card">
+        <img
+          src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1400&q=60"
+          alt="Учебные материалы на столе: символ учебы и студенческой жизни"
+          loading="lazy"
+        />
+        <figcaption class="muted">
+          Иллюстрация студенческой жизни (из открытого фотостока).
+        </figcaption>
+      </figure>
+
+      <div class="grid">
+        <article class="card">
+          <h3>Что мне нравится</h3>
+          <ul>
+            <li>Практико-ориентированные курсы.</li>
+            <li>Проекты и командная работа.</li>
+            <li>Возможность развиваться в аналитике.</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3>Мой учебный фокус</h3>
+          <ol>
+            <li>Статистика и проверка гипотез.</li>
+            <li>SQL и работа с данными.</li>
+            <li>Python для анализа.</li>
+          </ol>
+        </article>
+      </div>
+
+      <aside class="notice" aria-label="Примечание">
+        <p>
+          Хочешь задать вопрос? Перейди на страницу
+          <a href="feedback.html">обратной связи</a>.
+        </p>
+      </aside>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <address>
+        Контакты: <a href="mailto:student@example.com">student@example.com</a>
+      </address>
+      <p class="muted">© <span id="year">2026</span> — Учебный проект</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
