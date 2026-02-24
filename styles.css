@@ -9,6 +9,8 @@
 
 * { box-sizing: border-box; }
 
+html { scroll-behavior: smooth; }
+
 body {
   margin: 0;
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
@@ -17,23 +19,35 @@ body {
   color: var(--text);
 }
 
+/* элементные селекторы + текст */
+h1, h2, h3 { line-height: 1.2; }
+p { margin: 0.6rem 0; }
+
+/* класс */
 .container {
   width: min(1000px, calc(100% - 32px));
   margin: 0 auto;
 }
 
-.site-header {
-  padding: 28px 0 10px;
-}
+/* id */
+#top { position: relative; }
 
+/* header */
+.site-header { padding: 28px 0 10px; }
 .subtitle { color: var(--muted); margin-top: 6px; }
 
+/* position: sticky */
 .site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
-  background: rgba(255,255,255,0.03);
+  background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(8px);
 }
 
+/* flexbox + комбинации селекторов */
 .site-nav ul {
   display: flex;
   gap: 16px;
@@ -41,22 +55,39 @@ body {
   padding: 10px 0;
   margin: 0;
 }
-
-.site-nav a {
+.site-nav ul > li > a {
   color: var(--text);
   text-decoration: none;
   padding: 6px 10px;
   border-radius: 10px;
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
 }
 
-.site-nav a:hover { background: rgba(110,168,254,0.16); }
+/* атрибутный селектор */
+.site-nav a[aria-current="page"] {
+  background: rgba(110,168,254,0.22);
+  border: 1px solid rgba(110,168,254,0.35);
+}
 
+/* псевдо-классы */
+.site-nav a:hover { background: rgba(110,168,254,0.16); }
+.site-nav a:active { transform: translateY(1px); }
+
+/* карточки */
 .card {
   background: rgba(16, 26, 51, 0.85);
   border: 1px solid var(--border);
   border-radius: 16px;
   padding: 16px;
   margin: 14px 0;
+}
+
+/* псевдо-элемент */
+.card h3::before {
+  content: "✦ ";
+  color: var(--accent);
 }
 
 .card img {
@@ -66,12 +97,14 @@ body {
   display: block;
 }
 
+/* grid */
 .grid {
   display: grid;
   gap: 14px;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
 }
 
+/* заметка */
 .notice {
   border-left: 4px solid var(--accent);
   padding: 10px 14px;
@@ -82,6 +115,7 @@ body {
 
 .muted { color: var(--muted); }
 
+/* skip-link + position */
 .skip-link {
   position: absolute;
   left: -999px;
@@ -91,10 +125,11 @@ body {
   padding: 8px 10px;
   border-radius: 8px;
 }
-
 .skip-link:focus { left: 12px; }
 
+/* формы */
 form label { display: block; margin-top: 10px; }
+
 input, select, textarea {
   width: 100%;
   margin-top: 6px;
@@ -105,19 +140,39 @@ input, select, textarea {
   color: var(--text);
 }
 
+/* атрибутный селектор (required) */
+input[required], select[required], textarea[required] {
+  border-color: rgba(110,168,254,0.35);
+}
+
+/* псевдо-класс + !important */
+:focus-visible {
+  outline: 3px solid var(--accent) !important;
+  outline-offset: 2px;
+}
+
 fieldset {
   border: 1px solid var(--border);
   border-radius: 14px;
   padding: 12px;
   margin: 12px 0;
 }
-
 legend { padding: 0 8px; color: var(--muted); }
 
+/* комбинация селекторов + атрибут */
+label > input[type="radio"],
+label > input[type="checkbox"] {
+  width: auto;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+/* flexbox */
 .actions {
   display: flex;
   gap: 10px;
   margin-top: 12px;
+  flex-wrap: wrap;
 }
 
 button {
@@ -127,14 +182,37 @@ button {
   background: rgba(110,168,254,0.22);
   color: var(--text);
   cursor: pointer;
+  transition: transform 0.06s ease;
 }
+button:hover { background: rgba(110,168,254,0.30); }
+button:active { transform: translateY(1px); }
 
 button.secondary { background: rgba(255,255,255,0.08); }
 
 .mt { margin-top: 10px; display: block; }
 
+/* визуализация списков + псевдо-элемент ::marker */
+.checklist li::marker { content: "✔  "; color: var(--accent); }
+.steps li::marker { color: var(--accent); font-weight: 700; }
+
+/* footer flexbox */
 .site-footer {
   margin-top: 26px;
   padding: 18px 0 30px;
   border-top: 1px solid var(--border);
+}
+.site-footer .container {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* @media (адаптив) */
+@media (max-width: 640px) {
+  .site-nav ul { flex-direction: column; gap: 8px; }
+  .actions { flex-direction: column; }
+  button { width: 100%; }
+  .container { width: min(1000px, calc(100% - 24px)); }
 }
