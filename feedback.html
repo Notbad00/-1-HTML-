@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Обратная связь — Я студент ВШЭ</title>
   <meta name="description" content="Форма обратной связи: поля ввода, выбор, чекбоксы." />
-  <link rel="stylesheet" href="styles.css?v=2" />
+  <link rel="stylesheet" href="styles.css?v=9" />
 
   <style>
     /* несколько правил прямо в странице (требование задания) */
@@ -16,6 +16,9 @@
 
 <body>
   <a class="skip-link" href="#content">Перейти к основному содержимому</a>
+
+  <!-- ВАУ-подсветка (слой) -->
+  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
 
   <header id="top" class="site-header">
     <div class="container">
@@ -49,7 +52,7 @@
             <input id="email" name="email" type="email" placeholder="name@example.com" required />
 
             <label for="tel">Телефон (необязательно)</label>
-            <input id="tel" name="tel" type="tel" placeholder="+7." />
+            <input id="tel" name="tel" type="tel" placeholder="+7..." />
           </fieldset>
 
           <fieldset>
@@ -102,5 +105,51 @@
       <p class="muted">Вернуться на <a href="index.html">главную</a>.</p>
     </div>
   </footer>
+
+  <script>
+    // ===== WOW подсветка за мышкой с инерцией =====
+    (function () {
+      const glow = document.getElementById("cursorGlow");
+      if (!glow) return;
+
+      const isTouch = matchMedia("(pointer: coarse)").matches;
+      const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (isTouch || reduceMotion) {
+        glow.style.display = "none";
+        return;
+      }
+
+      let targetX = 0.5, targetY = 0.5;
+      let currentX = 0.5, currentY = 0.5;
+      let visible = false;
+
+      function setTargetFromEvent(e) {
+        const x = e.clientX / window.innerWidth;
+        const y = e.clientY / window.innerHeight;
+        targetX = Math.min(1, Math.max(0, x));
+        targetY = Math.min(1, Math.max(0, y));
+        if (!visible) {
+          visible = true;
+          glow.style.opacity = "1";
+        }
+      }
+
+      function tick() {
+        currentX += (targetX - currentX) * 0.12;
+        currentY += (targetY - currentY) * 0.12;
+
+        glow.style.setProperty("--mx", (currentX * 100).toFixed(2) + "%");
+        glow.style.setProperty("--my", (currentY * 100).toFixed(2) + "%");
+
+        requestAnimationFrame(tick);
+      }
+
+      window.addEventListener("mousemove", setTargetFromEvent, { passive: true });
+      window.addEventListener("mouseenter", () => (glow.style.opacity = "1"), { passive: true });
+      window.addEventListener("mouseleave", () => (glow.style.opacity = "0"), { passive: true });
+
+      requestAnimationFrame(tick);
+    })();
+  </script>
 </body>
 </html>
