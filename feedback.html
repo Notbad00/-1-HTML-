@@ -6,12 +6,18 @@
   <title>Обратная связь — Я студент ВШЭ</title>
   <meta name="description" content="Форма обратной связи: поля ввода, выбор, чекбоксы." />
   <link rel="stylesheet" href="styles.css" />
+
+  <style>
+    /* несколько правил прямо в странице (требование задания) */
+    textarea { resize: vertical; }
+    input::placeholder { color: rgba(232,238,252,0.65); }
+  </style>
 </head>
 
 <body>
   <a class="skip-link" href="#content">Перейти к основному содержимому</a>
 
-  <header class="site-header">
+  <header id="top" class="site-header">
     <div class="container">
       <h1>Обратная связь</h1>
       <p class="subtitle">Оставь сообщение — я отвечу на почту.</p>
@@ -43,7 +49,7 @@
             <input id="email" name="email" type="email" placeholder="name@example.com" required />
 
             <label for="tel">Телефон (необязательно)</label>
-            <input id="tel" name="tel" type="tel" placeholder="+7..." />
+            <input id="tel" name="tel" type="tel" placeholder="+7." />
           </fieldset>
 
           <fieldset>
@@ -59,7 +65,7 @@
 
             <label for="message">Сообщение</label>
             <textarea id="message" name="message" rows="6" minlength="10" required
-              placeholder="Напишите вопрос или комментарий..."></textarea>
+              placeholder="Напишите вопрос или комментарий."></textarea>
 
             <label for="file">Прикрепить файл (необязательно)</label>
             <input id="file" name="file" type="file" />
@@ -68,7 +74,7 @@
           <fieldset>
             <legend>Предпочтения</legend>
 
-            <p class="muted">Как с вами связаться?</p>
+            <p class="muted" style="opacity: 0.9;">Как с вами связаться?</p>
             <label><input type="radio" name="contact" value="email" checked /> По email</label>
             <label><input type="radio" name="contact" value="phone" /> По телефону</label>
 
@@ -79,7 +85,7 @@
           </fieldset>
 
           <div class="actions">
-            <button type="submit">Отправить</button>
+            <button type="submit" style="font-weight: 700; letter-spacing: 0.2px;">Отправить</button>
             <button type="reset" class="secondary">Очистить</button>
           </div>
 
