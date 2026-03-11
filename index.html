@@ -6,7 +6,7 @@
   <title>Я — студент ВШЭ</title>
   <meta name="description" content="Мини-сайт: Я — студент ВШЭ Ахметшин Руслан. Главная страница и форма обратной связи." />
   <link rel="stylesheet" href="styles.css?v=9" />
-
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol@v10.2.1/ol.css" />
   <style>
     /* несколько правил прямо в странице (требование задания) */
     h1 { letter-spacing: 0.3px; }
@@ -109,7 +109,32 @@
       </aside>
     </section>
   </main>
+ <section aria-labelledby="map-title">
+      <h2 id="map-title">Интерактивная карта</h2>
+      <article class="card">
+        <p class="muted">На карте отмечен один из корпусов ВШЭ. Кликни в любую точку, чтобы увидеть координаты.</p>
+        <div id="map" class="map-box" aria-label="Карта OpenLayers"></div>
+        <p id="mapHint" class="muted">Подсказка: попробуй кликнуть по карте.</p>
+      </article>
+    </section>
 
+    <section aria-labelledby="chat-title">
+      <h2 id="chat-title">Виртуальный чат с автором</h2>
+      <article class="card chat-card">
+        <div id="chatBody" class="chat-body" aria-live="polite">
+          <div class="chat-message bot">Привет! Это фиктивный чат. Напиши вопрос или отправь голосовое сообщение.</div>
+        </div>
+
+        <form id="chatForm" class="chat-form">
+          <label for="chatInput">Сообщение</label>
+          <input id="chatInput" type="text" placeholder="Например: расскажи про учебу в ВШЭ" autocomplete="off" />
+          <div class="actions">
+            <button type="submit">Отправить</button>
+            <button id="recordVoiceBtn" type="button" class="secondary">Записать голосовое</button>
+          </div>
+        </form>
+      </article>
+    </section>
   <footer class="site-footer">
     <div class="container">
       <address>
@@ -119,56 +144,7 @@
     </div>
   </footer>
 
-  <script>
-    // год в футере
-    document.getElementById("year").textContent = new Date().getFullYear();
-
-    // ===== WOW подсветка за мышкой с инерцией =====
-    (function () {
-      const glow = document.getElementById("cursorGlow");
-      if (!glow) return;
-
-      // на тач-устройствах отключаем (там нет курсора)
-      const isTouch = matchMedia("(pointer: coarse)").matches;
-      const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
-      if (isTouch || reduceMotion) {
-        glow.style.display = "none";
-        return;
-      }
-
-      let targetX = 0.5, targetY = 0.5;
-      let currentX = 0.5, currentY = 0.5;
-      let visible = false;
-
-      function setTargetFromEvent(e) {
-        const x = e.clientX / window.innerWidth;
-        const y = e.clientY / window.innerHeight;
-        targetX = Math.min(1, Math.max(0, x));
-        targetY = Math.min(1, Math.max(0, y));
-        if (!visible) {
-          visible = true;
-          glow.style.opacity = "1";
-        }
-      }
-
-      // плавная инерция
-      function tick() {
-        currentX += (targetX - currentX) * 0.12;
-        currentY += (targetY - currentY) * 0.12;
-
-        glow.style.setProperty("--mx", (currentX * 100).toFixed(2) + "%");
-        glow.style.setProperty("--my", (currentY * 100).toFixed(2) + "%");
-
-        requestAnimationFrame(tick);
-      }
-
-      window.addEventListener("mousemove", setTargetFromEvent, { passive: true });
-      window.addEventListener("mouseenter", () => (glow.style.opacity = "1"), { passive: true });
-      window.addEventListener("mouseleave", () => (glow.style.opacity = "0"), { passive: true });
-
-      // старт по центру
-      requestAnimationFrame(tick);
-    })();
-  </script>
+   <script src="https://cdn.jsdelivr.net/npm/ol@v10.2.1/dist/ol.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
