@@ -49,42 +49,34 @@ function initCursorGlow() {
 
 function initMap() {
   const mapContainer = document.getElementById('map');
-  if (!mapContainer || !window.ol) return;
+  if (!mapContainer) return;
 
-  const hseCoords = [37.648659, 55.759073];
-
-  const marker = new ol.Feature({
-    geometry: new ol.geom.Point(ol.proj.fromLonLat(hseCoords))
-  });
-
-  marker.setStyle(new ol.style.Style({
-    image: new ol.style.Circle({
-      radius: 8,
-      fill: new ol.style.Fill({ color: '#6ea8fe' }),
-      stroke: new ol.style.Stroke({ color: '#ffffff', width: 2 })
-    })
-  }));
-
-  const vectorSource = new ol.source.Vector({ features: [marker] });
-  const vectorLayer = new ol.layer.Vector({ source: vectorSource });
-
-  const map = new ol.Map({
-    target: 'map',
-    layers: [
-      new ol.layer.Tile({ source: new ol.source.OSM() }),
-      vectorLayer
-    ],
-    view: new ol.View({
-      center: ol.proj.fromLonLat(hseCoords),
-      zoom: 15
-    })
-  });
-
-  map.on('click', (event) => {
-    const coords = ol.proj.toLonLat(event.coordinate);
+  if (!window.L) {
     const hint = document.getElementById('mapHint');
     if (hint) {
-      hint.textContent = `Вы выбрали точку: ${coords[1].toFixed(5)}, ${coords[0].toFixed(5)}`;
+      hint.textContent = 'Не удалось загрузить библиотеку карты. Проверьте подключение к интернету или CDN-ссылки.';
+    }
+    return;
+  }
+
+  const hseCoords = [55.759073, 37.648659];
+
+  const map = L.map('map').setView(hseCoords, 15);
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; OpenStreetMap contributors'
+  }).addTo(map);
+
+  L.marker(hseCoords)
+    .addTo(map)
+    .bindPopup('Один из корпусов ВШЭ')
+    .openPopup();
+
+  map.on('click', (event) => {
+    const hint = document.getElementById('mapHint');
+    if (hint) {
+      hint.textContent = `Вы выбрали точку: ${event.latlng.lat.toFixed(5)}, ${event.latlng.lng.toFixed(5)}`;
     }
   });
 }
