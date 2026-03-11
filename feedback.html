@@ -106,50 +106,6 @@
     </div>
   </footer>
 
-  <script>
-    // ===== WOW подсветка за мышкой с инерцией =====
-    (function () {
-      const glow = document.getElementById("cursorGlow");
-      if (!glow) return;
-
-      const isTouch = matchMedia("(pointer: coarse)").matches;
-      const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
-      if (isTouch || reduceMotion) {
-        glow.style.display = "none";
-        return;
-      }
-
-      let targetX = 0.5, targetY = 0.5;
-      let currentX = 0.5, currentY = 0.5;
-      let visible = false;
-
-      function setTargetFromEvent(e) {
-        const x = e.clientX / window.innerWidth;
-        const y = e.clientY / window.innerHeight;
-        targetX = Math.min(1, Math.max(0, x));
-        targetY = Math.min(1, Math.max(0, y));
-        if (!visible) {
-          visible = true;
-          glow.style.opacity = "1";
-        }
-      }
-
-      function tick() {
-        currentX += (targetX - currentX) * 0.12;
-        currentY += (targetY - currentY) * 0.12;
-
-        glow.style.setProperty("--mx", (currentX * 100).toFixed(2) + "%");
-        glow.style.setProperty("--my", (currentY * 100).toFixed(2) + "%");
-
-        requestAnimationFrame(tick);
-      }
-
-      window.addEventListener("mousemove", setTargetFromEvent, { passive: true });
-      window.addEventListener("mouseenter", () => (glow.style.opacity = "1"), { passive: true });
-      window.addEventListener("mouseleave", () => (glow.style.opacity = "0"), { passive: true });
-
-      requestAnimationFrame(tick);
-    })();
-  </script>
+  <script src="app.js"></script>
 </body>
 </html>
