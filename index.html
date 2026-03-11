@@ -6,7 +6,8 @@
   <title>Я — студент ВШЭ</title>
   <meta name="description" content="Мини-сайт: Я — студент ВШЭ Ахметшин Руслан. Главная страница и форма обратной связи." />
   <link rel="stylesheet" href="styles.css?v=9" />
- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol@v10.2.1/ol.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
   <style>
     /* несколько правил прямо в странице (требование задания) */
     h1 { letter-spacing: 0.3px; }
@@ -103,17 +104,17 @@
 
       <aside class="notice" aria-label="Примечание">
         <p>
-          Хочешь задать вопрос? Перейди на страницу
+          Хочешь задать вопос? Перейди на страницу
           <a href="feedback.html">обратной связи</a>.
         </p>
       </aside>
     </section>
-  </main>
- <section aria-labelledby="map-title">
-      <h2 id="map-title">Интерактивная карта</h2>
+
+    <section aria-labelledby="map-title">
+      <h2 id="map-title">Интерактивая карта</h2>
       <article class="card">
         <p class="muted">На карте отмечен один из корпусов ВШЭ. Кликни в любую точку, чтобы увидеть координаты.</p>
-        <div id="map" class="map-box" aria-label="Карта OpenLayers"></div>
+        <div id="map" class="map-box" aria-label="Интерактивная карта"></div>
         <p id="mapHint" class="muted">Подсказка: попробуй кликнуть по карте.</p>
       </article>
     </section>
@@ -135,6 +136,8 @@
         </form>
       </article>
     </section>
+  </main>
+
   <footer class="site-footer">
     <div class="container">
       <address>
@@ -144,7 +147,7 @@
     </div>
   </footer>
 
-   <script src="https://cdn.jsdelivr.net/npm/ol@v10.2.1/dist/ol.js"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
