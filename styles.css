@@ -353,3 +353,54 @@ body > footer {
   height: auto;
   border-radius: 0;
 }
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 12px;
+}
+
+.data-table th,
+.data-table td {
+  border: 1px solid var(--border);
+  padding: 10px 12px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.data-table th {
+  background: rgba(110,168,254,0.16);
+}
+
+.status-success {
+  border-left: 4px solid #4ade80;
+  background: rgba(74, 222, 128, 0.12);
+  padding: 10px 14px;
+  border-radius: 10px;
+  margin-bottom: 14px;
+}
+
+.link-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+
+.button-link {
+  display: inline-block;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: rgba(110,168,254,0.22);
+  color: var(--text);
+  text-decoration: none;
+}
+
+.button-link.secondary {
+  background: rgba(255,255,255,0.08);
+}
