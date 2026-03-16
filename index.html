@@ -4,29 +4,24 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Я — студент ВШЭ</title>
-  <meta name="description" content="Мини-сайт: Я — студент ВШЭ Ахметшин Руслан. Главная страница и форма обратной связи." />
-  <link rel="stylesheet" href="styles.css?v=9" />
+  <meta name="description" content="Мини-сайт: Я — студент ВШЭ. Главная страница и форма обратной связи." />
+  <link rel="stylesheet" href="/styles.css" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-
   <style>
-    /* несколько правил прямо в странице (требование задания) */
     h1 { letter-spacing: 0.3px; }
     code { font-size: 0.95em; }
     a { text-underline-offset: 3px; }
   </style>
 </head>
-
 <body>
   <a class="skip-link" href="#content">Перейти к основному содержимому</a>
-
-  <!-- ВАУ-подсветка (слой) -->
   <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
 
   <header id="top" class="site-header">
     <div class="container">
       <h1>Я — студент ВШЭ</h1>
       <p class="subtitle">
-        Небольшой статический сайт из двух страниц: о себе и обратная связь.
+        Небольшой сайт, развёрнутый как локальное приложение Node.js.
       </p>
     </div>
   </header>
@@ -34,8 +29,9 @@
   <nav class="site-nav" aria-label="Основная навигация">
     <div class="container">
       <ul>
-        <li><a aria-current="page" href="index.html">Главная</a></li>
-        <li><a href="feedback.html">Обратная связь</a></li>
+        <li><a aria-current="page" href="/">Главная</a></li>
+        <li><a href="/feedback">Обратная связь</a></li>
+        <li><a href="/submissions">Полученные данные</a></li>
       </ul>
     </div>
   </nav>
@@ -63,7 +59,7 @@
         </p>
 
         <footer class="muted">
-          <p>Обновлено: <time datetime="2026-02-14">14.02.2026</time></p>
+          <p>Обновлено: <time datetime="2026-03-17">17.03.2026</time></p>
         </footer>
       </article>
     </section>
@@ -78,7 +74,7 @@
           loading="lazy"
         />
         <figcaption class="muted">
-          Иллюстрация студенческой жизни (из открытого фотостока).
+          Иллюстрация студенческой жизни.
         </figcaption>
       </figure>
 
@@ -104,14 +100,14 @@
 
       <aside class="notice" aria-label="Примечание">
         <p>
-          Хочешь задать вопос? Перейди на страницу
-          <a href="feedback.html">обратной связи</a>.
+          Хочешь задать вопрос? Перейди на страницу
+          <a href="/feedback">обратной связи</a>.
         </p>
       </aside>
     </section>
 
     <section aria-labelledby="map-title">
-      <h2 id="map-title">Интерактивая карта</h2>
+      <h2 id="map-title">Интерактивная карта</h2>
       <article class="card">
         <p class="muted">На карте отмечен один из корпусов ВШЭ. Кликни в любую точку, чтобы увидеть координаты.</p>
         <div id="map" class="map-box" aria-label="Интерактивная карта"></div>
@@ -148,6 +144,6 @@
   </footer>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <script src="app.js"></script>
+  <script src="/app.js"></script>
 </body>
 </html>
