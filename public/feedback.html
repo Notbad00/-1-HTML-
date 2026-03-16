@@ -4,34 +4,30 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Обратная связь — Я студент ВШЭ</title>
-  <meta name="description" content="Форма обратной связи: поля ввода, выбор, чекбоксы." />
-  <link rel="stylesheet" href="styles.css?v=9" />
-
+  <meta name="description" content="Форма обратной связи: данные сохраняются в MongoDB." />
+  <link rel="stylesheet" href="/styles.css" />
   <style>
-    /* несколько правил прямо в странице (требование задания) */
     textarea { resize: vertical; }
     input::placeholder { color: rgba(232,238,252,0.65); }
   </style>
 </head>
-
 <body>
   <a class="skip-link" href="#content">Перейти к основному содержимому</a>
-
-  <!-- ВАУ-подсветка (слой) -->
   <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
 
   <header id="top" class="site-header">
     <div class="container">
       <h1>Обратная связь</h1>
-      <p class="subtitle">Оставь сообщение — я отвечу на почту.</p>
+      <p class="subtitle">Оставь сообщение — данные будут сохранены в MongoDB.</p>
     </div>
   </header>
 
   <nav class="site-nav" aria-label="Основная навигация">
     <div class="container">
       <ul>
-        <li><a href="index.html">Главная</a></li>
-        <li><a aria-current="page" href="feedback.html">Обратная связь</a></li>
+        <li><a href="/">Главная</a></li>
+        <li><a aria-current="page" href="/feedback">Обратная связь</a></li>
+        <li><a href="/submissions">Полученные данные</a></li>
       </ul>
     </div>
   </nav>
@@ -41,7 +37,7 @@
       <h2 id="form-title">Форма</h2>
 
       <article class="card">
-        <form action="#" method="post" autocomplete="on">
+        <form action="/feedback" method="post" autocomplete="on">
           <fieldset>
             <legend>Контактные данные</legend>
 
@@ -61,17 +57,14 @@
             <label for="topic">Тема</label>
             <select id="topic" name="topic" required>
               <option value="" selected disabled>Выберите тему</option>
-              <option value="study">Учёба в ВШЭ</option>
-              <option value="projects">Проекты/портфолио</option>
-              <option value="other">Другое</option>
+              <option value="Учёба в ВШЭ">Учёба в ВШЭ</option>
+              <option value="Проекты/портфолио">Проекты/портфолио</option>
+              <option value="Другое">Другое</option>
             </select>
 
             <label for="message">Сообщение</label>
             <textarea id="message" name="message" rows="6" minlength="10" required
               placeholder="Напишите вопрос или комментарий."></textarea>
-
-            <label for="file">Прикрепить файл (необязательно)</label>
-            <input id="file" name="file" type="file" />
           </fieldset>
 
           <fieldset>
@@ -82,7 +75,7 @@
             <label><input type="radio" name="contact" value="phone" /> По телефону</label>
 
             <label class="mt">
-              <input type="checkbox" name="agree" required />
+              <input type="checkbox" name="agree" value="yes" required />
               Я согласен(на) на обработку данных для ответа на обращение
             </label>
           </fieldset>
@@ -93,7 +86,7 @@
           </div>
 
           <p class="muted">
-            Примечание: это учебная форма, отправка не настроена (action="#").
+            После отправки откроется страница со всеми сохранёнными данными.
           </p>
         </form>
       </article>
@@ -102,10 +95,10 @@
 
   <footer class="site-footer">
     <div class="container">
-      <p class="muted">Вернуться на <a href="index.html">главную</a>.</p>
+      <p class="muted">Вернуться на <a href="/">главную</a>.</p>
     </div>
   </footer>
 
-  <script src="app.js"></script>
+  <script src="/app.js"></script>
 </body>
 </html>
